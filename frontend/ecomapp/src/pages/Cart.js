@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useCart } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Cart() {
   const { cart, removeFromCart } = useCart();
@@ -9,6 +11,13 @@ export default function Cart() {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+      }
+    }, [navigate]);
 
   return (
     <div className="cart-container">

@@ -6,8 +6,8 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (product) => {
+    console.log(product)
     setCart((prevCart) => {
-      console.log(prevCart)
       const existingProduct = prevCart.find(item => item._id === product._id);
       if (existingProduct) {
         return prevCart.map(item => 
